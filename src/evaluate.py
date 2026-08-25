@@ -3,11 +3,10 @@ import pickle
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-from preprocess import load_data
+from src.preprocess import load_data
 
 
 MODEL_PATH = "model.pkl"
-
 MIN_ACCURACY = 0.80
 
 
@@ -38,7 +37,7 @@ def evaluate():
     if accuracy < MIN_ACCURACY:
         raise SystemExit(
             f"FAIL: accuracy {accuracy:.4f} "
-            f"is below {MIN_ACCURACY:.2f}"
+            f"is below 0.80"
         )
 
     print("Model quality gate passed.")

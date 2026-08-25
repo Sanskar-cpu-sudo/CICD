@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 REQUIRED_COLUMNS = [
     "student_id",
     "cgpa",
@@ -14,7 +15,6 @@ REQUIRED_COLUMNS = [
 
 def validate_dataframe(df: pd.DataFrame) -> None:
 
-    # Check required columns
     missing = [
         column
         for column in REQUIRED_COLUMNS
@@ -22,27 +22,39 @@ def validate_dataframe(df: pd.DataFrame) -> None:
     ]
 
     if missing:
-        raise ValueError(f"Missing columns: {missing}")
+        raise ValueError(
+            f"Missing columns: {missing}"
+        )
 
-    # Check missing values
     if df[REQUIRED_COLUMNS].isnull().any().any():
-        raise ValueError("Missing values detected")
+        raise ValueError(
+            "Missing values detected"
+        )
 
-    # Check ranges
     if not df["cgpa"].between(0, 10).all():
-        raise ValueError("CGPA must be between 0 and 10")
+        raise ValueError(
+            "CGPA must be between 0 and 10"
+        )
 
     if not df["attendance"].between(0, 100).all():
-        raise ValueError("Attendance must be between 0 and 100")
+        raise ValueError(
+            "Attendance must be between 0 and 100"
+        )
 
     if not df["coding_score"].between(0, 100).all():
-        raise ValueError("Coding score must be between 0 and 100")
+        raise ValueError(
+            "Coding score must be between 0 and 100"
+        )
 
     if not df["projects"].ge(0).all():
-        raise ValueError("Projects cannot be negative")
+        raise ValueError(
+            "Projects cannot be negative"
+        )
 
     if not df["internships"].ge(0).all():
-        raise ValueError("Internships cannot be negative")
+        raise ValueError(
+            "Internships cannot be negative"
+        )
 
     if not df["communication_skills"].between(0, 10).all():
         raise ValueError(
@@ -50,10 +62,13 @@ def validate_dataframe(df: pd.DataFrame) -> None:
         )
 
     if not df["placed"].isin([0, 1]).all():
-        raise ValueError("placed must contain only 0 or 1")
+        raise ValueError(
+            "placed must contain only 0 or 1"
+        )
 
 
 def main():
+
     df = pd.read_csv("data.csv")
 
     validate_dataframe(df)

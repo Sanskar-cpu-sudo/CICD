@@ -7,7 +7,7 @@ from src.preprocess import load_data
 
 
 MODEL_PATH = "model.pkl"
-MIN_ACCURACY = 0.80
+MIN_ACCURACY = 0.99
 
 
 def evaluate():
